@@ -137,15 +137,15 @@ filter import_filter_v6 {
 
 在 BGP 中，是可以在一个会话上传递多种协议的，也就是`Multiprotocol extensions for BGP`（也简称`MP-BGP`）（[RFC 4760](http://www.rfc-editor.org/info/rfc4760)）。但是，如果没有明确约定，一般都是每种协议起一个会话。
 
-对于 BGP Session 的命名，你大可以根据自己的喜好命名，但是建议还是自行指定一个命名规则，在之后对路由和会话的管理有帮助。\
+对于 BGP Session 的命名，你大可以根据自己的喜好命名，但是建议还是自行指定一个命名规则，在之后对路由和会话的管理有帮助。
 例如
 
 | 会话类型       | 命名方式                                   |
 | ---------- | -------------------------------------- |
-| Transit    | transit\_asXXX(对方ASN)\_v6(IP协议版本号4/6)  |
-| Peering    | peer\_asXXX(对方ASN)\_v6(IP协议版本号4/6)     |
-| Downstream | customer\_asXXX(对方ASN)\_v6(IP协议版本号4/6) |
-| RPKI       | rpki\_Cloudflare(RPKI服务提供来源)           |
+| Transit    | transit_asXXX(对方ASN)_v6(IP协议版本号4/6)  |
+| Peering    | peer_asXXX(对方ASN)_v6(IP协议版本号4/6)     |
+| Downstream | customer_asXXX(对方ASN)_v6(IP协议版本号4/6) |
+| RPKI       | rpki_Cloudflare(RPKI服务提供来源)           |
 | ...        | ...                                    |
 
 ### 配置BGP会话（Peering） <a href="#pei-zhi-bgp-hui-hua" id="pei-zhi-bgp-hui-hua"></a>
@@ -192,7 +192,7 @@ protocol bgp peer_as100000_v6 { # 建议给自己指定一个命名规则
 };
 ```
 
-这里只是表示了可以直接在某个 session 中写明过滤，export 同理，你也可以这么做。\
+这里只是表示了可以直接在某个 session 中写明过滤，export 同理，你也可以这么做。
 当然，在之后的 BGP 学习中，你会发现只排除默认路由往往是不够的，你还需要通过 IRR/RPKI/Bogon 检测对路由进行过滤，关于这些类型的检测，我们之后再讲。
 
 ### 收尾 <a href="#shou-wei" id="shou-wei"></a>

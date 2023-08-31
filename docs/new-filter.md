@@ -25,7 +25,7 @@
 >
 > 3.1 Reject default routes 0.0.0.0/0 and ::/0.
 >
-> 3.2 Reject AS paths that use BGP AS\_SET notation (i.e. {1} or {1 2}, etc). See draft-ietf-idr-deprecate-as-set-confed-set.
+> 3.2 Reject AS paths that use BGP AS_SET notation (i.e. {1} or {1 2}, etc). See draft-ietf-idr-deprecate-as-set-confed-set.
 >
 > 3.3 Reject prefix lengths less than minimum and greater than maximum. For IPv4 this is 8 and 24. For IPv6 this is 16 and 48.
 >
@@ -41,7 +41,7 @@
 >
 > 3.9 Reject AS paths that use AS 0. As per RFC 7606, "A BGP speaker MUST NOT originate or propagate a route with an AS number of zero".
 >
-> 3.10 Reject routes that have RPKI status INVALID\_ASN or INVALID\_LENGTH based on the origin AS and prefix.
+> 3.10 Reject routes that have RPKI status INVALID_ASN or INVALID_LENGTH based on the origin AS and prefix.
 >
 > 1. For each route, perform the following acceptance tests:
 >
@@ -78,7 +78,7 @@
 >
 > 3.1 拒绝默认路由 0.0.0.0/0 和 ::/0。
 >
-> 3.2 拒绝使用 BGP AS\_SET 表示法的 AS 路径（即 {1} 或 {1 2} 等）。请参阅draft-ietf-idr-deprecate-as-set-confed-set。
+> 3.2 拒绝使用 BGP AS_SET 表示法的 AS 路径（即 {1} 或 {1 2} 等）。请参阅draft-ietf-idr-deprecate-as-set-confed-set。
 >
 > 3.3 拒绝前缀长度小于最小值和大于最大值。IPV4中为 8 和 24，IPV6为16 和 48。
 >
@@ -94,7 +94,7 @@
 >
 > 3.9 拒绝使用 AS 0 的 AS 路径。根据 RFC 7606，“BGP 广播者不得发起或传播 AS 编号为零的路由”。
 >
-> 3.10 拒绝在源ASN或IP前缀的RPKI中含有INVALID\_ASN 或 INVALID\_LENGTH状态的路由
+> 3.10 拒绝在源ASN或IP前缀的RPKI中含有INVALID_ASN 或 INVALID_LENGTH状态的路由
 >
 > 1. 对于每条路由，执行以下接受测试：
 >
@@ -199,7 +199,7 @@ RFC 要求所有支持 BGP 社区的路由器必须处理知名的 BGP 社区，
 > }
 > ```
 >
-> 变量只能定义在函数或过滤器的最开头（左花括号外面），关于变量类型的更详细信息，请移步[官方文档相关部分](https://bird.network.cz/?get\_doc\&v=20\&f=bird.html#ss5.2)。
+> 变量只能定义在函数或过滤器的最开头（左花括号外面），关于变量类型的更详细信息，请移步[官方文档相关部分](https://bird.network.cz/?get_doc\&v=20\&f=bird.html#ss5.2)。
 >
 > #### 操作符 <a href="#cao-zuo-fu" id="cao-zuo-fu"></a>
 >
@@ -236,7 +236,7 @@ BIRD 的包含 `~` 和不包含 `!~` 操作符能用于下表中所示的类型�
 
 |        左操作数类型       |    右操作数类型    |                        样例                       |                        说明                       |
 | :-----------------: | :----------: | :---------------------------------------------: | :---------------------------------------------: |
-|      `bgppath`      |   `bgpmask`  |        `bgp_path ~ [= * 64512 64513 * =]`       |              bgp\_path 符合右边描述的模式则为真             |
+|      `bgppath`      |   `bgpmask`  |        `bgp_path ~ [= * 64512 64513 * =]`       |              bgp_path 符合右边描述的模式则为真             |
 |        `int`        |   `bgppath`  |                `64512 ~ bgp_path`               |                   左边被包含于右边则为真                   |
 | `pair`/`quad`/`ip4` |    `clist`   |           `(123, 456) ~ bgp_community`          | 左边被包含于右边则为真，`pair`、`quad`、`ip4` 都是 32 位的，所以它们等价 |
 |         `ec`        |   `eclist`   |        `(rt, 10, 3) ~ bgp_ext_community`        |                   左边被包含于右边则为真                   |

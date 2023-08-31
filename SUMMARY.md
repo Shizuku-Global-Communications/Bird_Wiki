@@ -21,5 +21,5 @@
   * [BIRD 2.0.10安装方法](docs/attachments/bird-2.0.10-an-zhuang-fang-fa.md)
   * [基础过滤定义](docs/attachments/ji-chu-guo-lv-ding-yi.md)
   * [IRR RPKI 服务的搭建和使用](docs/attachments/irr-rpki-build-and-use.md)
-* [鸣谢](docs/special\_thanks.md)
+* [鸣谢](docs/special_thanks.md)
 * [争议项](docs/conflict.md)

@@ -20,10 +20,10 @@ module.exports = {
                         '/before-started/bad-behavior.md'
                     ]
                 },
-		'/start-your-bgp-session.md',
-		'/new-filter.md',
-		'/build-inet.md',
-		{
+		        '/start-your-bgp-session.md',
+		        '/new-filter.md',
+		        '/build-inet.md',
+		        {
                     text: "3. 附录",
                     link: "/attachments/",
                     children: [

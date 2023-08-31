@@ -4,11 +4,11 @@ BGP Session，顾名思义，就是一个 BGP 的会话，连接双方都必须�
 
 在下文中，你会看到不少类似于类似 Transit、Peering、Customer(Downstream，下文统一使用Downstream) 的描述，他们是你与对方的关系的描述。
 
-Transit：你的上游，将你的路由通过它走向世界的每一个角落。\
-Peering：你的对等连接，你需要把你和你的下游（Downstream）发送给对方，让双方的网络不经过Transit即可到达对方。\
+Transit：你的上游，将你的路由通过它走向世界的每一个角落。
+Peering：你的对等连接，你需要把你和你的下游（Downstream）发送给对方，让双方的网络不经过Transit即可到达对方。
 Downstream：你的下游，你需要负责把它的路由发送给你的上游，让下游的路由走向世界的每个角落。
 
-例如：\
+例如：
 某 VPS 服务商会免费提供 Transit，如果你发送路由，那么这条路由将会经过此 Transit 发送到互联网，所有流量都会经过你的上游到达你的 VPS。
 
 Transit、Peering、Customer 需要发送路由的关系如下

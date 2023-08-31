@@ -71,7 +71,7 @@ define TIER1_ASN = [ # 定义Tier1的ASN用于检查bgp_path, Tier1的ASN来源�
 ];
 ```
 
-一键调用除 TIER1\_ASN 的集合以外的定义
+一键调用除 TIER1_ASN 的集合以外的定义
 
 ```
 function general_check(){ # 返回true则拒绝，返回false则允许

@@ -144,7 +144,7 @@ protocol rpki rpki_server {
 
 ### 使用 RPKI 检测路由是否有效
 
-先在上文提到的rpki\_server的下面加入一个函数
+先在上文提到的rpki_server的下面加入一个函数
 
 ```
 function rpki_invalid_check() {        # true为无效，false为未知或有效，建议先判断IRR再判断RPKI，此时若RPKI未知，但是IRR有效，即认定其有效
