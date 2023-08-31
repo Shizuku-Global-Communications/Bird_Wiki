@@ -21,7 +21,7 @@ description: 在这篇文章中，我们将讲解多机器时的内网搭建方�
 
 如果你使用了`GRE/GRETAP/SIT/IPIP`等隧道，请检查在添加隧道网卡的时候是否带上了`ttl 255`参数，如果不带上此参数，你可能会遇到一些奇怪的问题，如下图所示
 
-<figure><img src="./images/mtr-example.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="./images/mtr-example.png" alt=""></img><figcaption></figcaption></figure>
 
 此时你就需要把添加网卡的指令
 
@@ -54,7 +54,7 @@ ip link add dev mytunnel type gre local 10.1.1.1 remote 10.1.1.2 ttl 255
 
     如下所示，其中黑色直线代表有链路存在，蓝色椭圆代表`AS114514`这个自治系统
 
-<figure><img src="./images/inet-example.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="./images/inet-example.png" alt=""></img><figcaption></figcaption></figure>
 
 ### 基础概念介绍 <a href="#ji-chu-gai-nian-jie-shao" id="ji-chu-gai-nian-jie-shao"></a>
 
