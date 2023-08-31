@@ -83,11 +83,12 @@ protocol static { #在某些特殊情况下，BGP会话会收到下一跳的路�
 
 所幸，作为一个只有一个节点的 BGP Player，我们不需要太过于复杂的过滤器，对于导出，我们只需要下面这些即可
 
-<pre><code>filter export_filter_v6 {
-<strong>    if net ~ OWNIPv6s then accept; # 如果前缀包括在OWNIPv6s内则放出
-</strong>    reject; # 否则全部拒绝
+```
+filter export_filter_v6 {
+    if net ~ OWNIPv6s then accept; # 如果前缀包括在OWNIPv6s内则放出
+    reject; # 否则全部拒绝
 };
-</code></pre>
+```
 
 或者自行定义需要导出的路由
 
@@ -112,7 +113,7 @@ filter import_filter_v6 {
 ```
 filter import_filter_v6 {
     if net ~ [::/0] then reject; # 如果为默认路由则拒绝
-    accept; # 接收所有其他路由
+    accept; # 接收所有其他路由	
 };
 ```
 
@@ -122,8 +123,9 @@ filter import_filter_v6 {
 
 如下所示
 
-<pre><code><strong>protocol bgp transit_as20473_v6 { # 建议给自己指定一个命名规则
-</strong>	local 2405::1 as MyASN; # 指定本端地址与ASN
+```
+protocol bgp transit_as20473_v6 { # 建议给自己指定一个命名规则
+	local 2405::1 as MyASN; # 指定本端地址与ASN
 	neighbor 2405::2 as 20473;  # 指定对端地址与ASN
 	ipv6 { # 指定要在该BGP邻居上跑的协议
 		import filter import_filter_v6; # 指定导入过滤器
@@ -133,7 +135,7 @@ filter import_filter_v6 {
 	graceful restart; # 平滑重启，建议支持，防止重启bird的时候造成路由撤回导致服务中断
 	description "AS20473 IPv6 Transit"; # 注释，根据自己的需要添加
 };
-</code></pre>
+```
 
 在 BGP 中，是可以在一个会话上传递多种协议的，也就是`Multiprotocol extensions for BGP`（也简称`MP-BGP`）（[RFC 4760](http://www.rfc-editor.org/info/rfc4760)）。但是，如果没有明确约定，一般都是每种协议起一个会话。
 
