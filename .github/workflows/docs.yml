@@ -39,6 +39,9 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
 
+      - name: Install React
+        run: npm install react react-dom
+  
       # 安装 Docusaurus
       - name: Install Docusaurus
         run: yarn install
