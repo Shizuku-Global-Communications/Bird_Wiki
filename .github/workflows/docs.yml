@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           # 选择要使用的 node 版本
-          node-version: '14'
+          node-version: '18.17.1'
 
       # 缓存 node_modules
       - name: Cache dependencies
@@ -40,7 +40,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       # 安装 Docusaurus
-      - name: Build Docusaurus site
+      - name: Install Docusaurus
         run: yarn install
 
       # 运行构建脚本
