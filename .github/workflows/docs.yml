@@ -39,9 +39,13 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile
 
+      # 安装 Docusaurus
+      - name: Build Docusaurus site
+        run: yarn install
+
       # 运行构建脚本
       - name: Build Docusaurus site
-        run: yarn run build
+        run: yarn build
 
       # 查看 workflow 的文档来获取更多信息
       # @see https://github.com/crazy-max/ghaction-github-pages
