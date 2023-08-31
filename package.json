@@ -5,6 +5,9 @@
   "repository": "https://github.com/Shizuku-Global-Communications/Bird_Wiki.git",
   "author": "MoeNek <56568297+MoeNek@users.noreply.github.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "docusaurus build"
+  },
   "dependencies": {
     "@docusaurus/core": "2.4.1",
     "@docusaurus/preset-classic": "2.4.1"
