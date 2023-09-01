@@ -2,7 +2,7 @@
 
 ## IRR 检测
 
-关于 IRR，[此处](../new-filter.md#irr) 已经提及，此文章不再赘述。
+关于 IRR，[此处](../new-filter#irr) 已经提及，此文章不再赘述。
 
 关于获取 IRR 的数据，我们需要用到`bgpq4`用于从 RIR 获取对应数据并且返回对应 IP 地址块。你可以通过执行`apt install bgpq4`安装或者前往 [bgpq4的GitHub仓库](https://github.com/bgp/bgpq4) 自行编译安装。
 
@@ -32,7 +32,7 @@ define AS-OUL_ASN_List = [
 bgpq4 -S ARIN,APNIC,RIPE,AFRINIC,LACNIC -R 48 -m 48 -A6b AS-OUL -l "define AS114514_IRR_v6"
 ```
 
-这串指令将会输出以下结果，bgpq4 已经将 IRR 记录递归到`/48`的大小，如果你不想这么做，请前往 [此处](irr-rpki-build-and-use.md#tong-guo-bgpq4-cha-xun-asn-de-fei-di-gui-irr-ji-lu)
+这串指令将会输出以下结果，bgpq4 已经将 IRR 记录递归到`/48`的大小，如果你不想这么做，请前往 [此处](irr-rpki-build-and-use#tong-guo-bgpq4-cha-xun-asn-de-fei-di-gui-irr-ji-lu)
 
 ```
 define AS114514_IRR_v6 = [    # 示例
@@ -118,7 +118,7 @@ if net ~ AS114514_IRR_v6 then accept;    # 如果这个前缀在AS114514_IRR_v6�
 
 ## RPKI 检测
 
-关于 RPKI，[此处](../new-filter.md#rpki) 已经提及，不再赘述。
+关于 RPKI，[此处](../new-filter#rpki) 已经提及，不再赘述。
 
 ### 建立 RPKI 会话
 

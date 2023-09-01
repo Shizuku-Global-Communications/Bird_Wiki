@@ -7,7 +7,7 @@ description: 在这篇文章中，我们将讲解多机器时的内网搭建方�
 ## 前言
 
 如果你拥有多个节点，建立一个内网将收到的路由发到别的节点上往往是很有必要的。
-通常，我们可以使用 [iBGP + confederation](build-inet.md#ibgp-confederation), [iBGP + OSPF](build-inet.md#ibgp-ospf), [OSPF (仅交换属于自己的网络)](build-inet.md#ospf) 达成建立内网的目的。
+通常，我们可以使用 [iBGP + confederation](build-inet#ibgp-confederation), [iBGP + OSPF](build-inet#ibgp-ospf), [OSPF (仅交换属于自己的网络)](build-inet#ospf) 达成建立内网的目的。
 
 如果你很懒不想搭建内网，尝试直接从`transit`中获取别的节点的路由并发送给`peer`，对方的过滤器有很大概率会因为`你的 AS Path 中存在 Tier 1 ASN`从而拒绝这条路由。
 
@@ -21,7 +21,7 @@ description: 在这篇文章中，我们将讲解多机器时的内网搭建方�
 
 如果你使用了`GRE/GRETAP/SIT/IPIP`等隧道，请检查在添加隧道网卡的时候是否带上了`ttl 255`参数，如果不带上此参数，你可能会遇到一些奇怪的问题，如下图所示
 
-<figure><img src="./images/mtr-example.png" alt=""></img><figcaption></figcaption></figure>
+<figure><img src="./assets/images/mtr-example.png" alt=""></img><figcaption></figcaption></figure>
 
 此时你就需要把添加网卡的指令
 
@@ -54,7 +54,7 @@ ip link add dev mytunnel type gre local 10.1.1.1 remote 10.1.1.2 ttl 255
 
     如下所示，其中黑色直线代表有链路存在，蓝色椭圆代表`AS114514`这个自治系统
 
-<figure><img src="./images/inet-example.png" alt=""></img><figcaption></figcaption></figure>
+<figure><img src="./assets/images/inet-example.png" alt=""></img><figcaption></figcaption></figure>
 
 ### 基础概念介绍 <a href="#ji-chu-gai-nian-jie-shao" id="ji-chu-gai-nian-jie-shao"></a>
 
@@ -256,7 +256,7 @@ protocol bgp confed_Route1 {
 注意：当数据包到下一跳时，接下来怎么走是下一跳的事，并不会100%按照你接收的 BGP 路由那样走
 比如你收到了1.0.0.0/24 `AS Path: 114514 6939 12345`，而下一跳走默认路由(假设默认路由上游是`174`)，那么实际上这个包走的是`174`而不是`6939`。
 
-在建立了 [OSPF连接](build-inet.md#ospf) 后，我们直接建立`iBGP Session`即可(此处为机器1和机器2的 Session，如有需要请自行添加，`BOGON_PREFIXES_V4/V6`定义请参阅[此处](attachments/ji-chu-guo-lv-ding-yi.md))
+在建立了 [OSPF连接](build-inet#ospf) 后，我们直接建立`iBGP Session`即可(此处为机器1和机器2的 Session，如有需要请自行添加，`BOGON_PREFIXES_V4/V6`定义请参阅[此处](attachments/ji-chu-guo-lv-ding-yi))
 
 机器1:&#x20;
 

@@ -199,7 +199,7 @@ RFC 要求所有支持 BGP 社区的路由器必须处理知名的 BGP 社区，
 > }
 > ```
 >
-> 变量只能定义在函数或过滤器的最开头（左花括号外面），关于变量类型的更详细信息，请移步[官方文档相关部分](https://bird.network.cz/?get_doc\&v=20\&f=bird.html#ss5.2)。
+> 变量只能定义在函数或过滤器的最开头（左花括号外面），关于变量类型的更详细信息，请移步[官方文档相关部分](https://bird.network.cz/?get_doc&v=20&f=bird.html#ss5.2)。
 >
 > #### 操作符 <a href="#cao-zuo-fu" id="cao-zuo-fu"></a>
 >

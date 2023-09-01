@@ -9,7 +9,7 @@
 **请注意：在本教程中，为了省事，直接将 RR 当做 Core 使用，这样做不清真，但是方便。如果真的需要制作一个真正的 RR，请同时使用 OSPF 等 IGP 协议，让路由器收到表后通过 OSPF 前往下一跳。**
 **本文假设路由器1为`RR Server`，与RR直接连接的路由器设为`RR Client`。**
 
-对于所有在`此RR范围内`的路由器，我们需要在`bird.conf`开头部分中添加以下配置(`BOGON_PREFIXES_V4/V6`定义请参阅[此处](attachments/ji-chu-guo-lv-ding-yi.md))
+对于所有在`此RR范围内`的路由器，我们需要在`bird.conf`开头部分中添加以下配置(`BOGON_PREFIXES_V4/V6`定义请参阅[此处](attachments/ji-chu-guo-lv-ding-yi))
 
 ```
 ipv4 table rr_v4;	# 添加专门用于存取RR发来的路由表

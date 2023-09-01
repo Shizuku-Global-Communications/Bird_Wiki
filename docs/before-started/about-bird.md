@@ -10,14 +10,14 @@
 >
 > * [Ondřej Filip](http://feela.network.cz/)（OSPF、BSD 端口、发布、打包）
 > * [Martin Mareš](http://mj.ucw.cz/)（整体架构、核心、转储、BGP）
-> * [Ondřej Zajíček](http://artax.karlin.mff.cuni.cz/\~zajio1am/)（新的 BGP 功能、OSPFv3、BFD）
+> * [Ondřej Zajíček](http://artax.karlin.mff.cuni.cz/~zajio1am/)（新的 BGP 功能、OSPFv3、BFD）
 > * [Maria Matějka](http://mq.ucw.cz/)（MPLS、过滤器、多线程）
 >
-> 前**BIRD**团队成员是 [Libor Forst](http://www.ms.mff.cuni.cz/\~forst/) 和 [Pavel Machek](http://atrey.karlin.mff.cuni.cz/\~pavel/)。
+> 前**BIRD**团队成员是 [Libor Forst](http://www.ms.mff.cuni.cz/~forst/) 和 [Pavel Machek](http://atrey.karlin.mff.cuni.cz/~pavel/)。
 
-如上所写，BIRD 是一个在 \*nix 和 FreeBSD 平台运行的大部分由 C 实现的路由程序，支持包括但不限于 BGP、RIP、OSPF、Babel 等协议。同类产品还有 OpenBGPD, FRRouting 等。但是目前使用比较广的是 BIRD，本 wiki 也是为了 BIRD 而写。
+如上所写，BIRD 是一个在 *nix 和 FreeBSD 平台运行的大部分由 C 实现的路由程序，支持包括但不限于 BGP、RIP、OSPF、Babel 等协议。同类产品还有 OpenBGPD, FRRouting 等。但是目前使用比较广的是 BIRD，本 wiki 也是为了 BIRD 而写。
 
-在此Wiki发布时，BIRD 最新版本为2.0.12，但本文还是会使用 BIRD 2.0.10 讲解。有些版本的源最新版可能是2.0.7，所以请前往 [这里](../attachments/bird-2.0.10-an-zhuang-fang-fa.md) 安装最新版本。
+在此Wiki发布时，BIRD 最新版本为 2.13.1，但本文还是会使用 BIRD 2.0.10 讲解。有些版本的源最新版可能是2.0.7，所以请前往 [这里](../attachments/bird-2.0.10-an-zhuang-fang-fa) 安装最新版本。
 
 ## 我看到了其他版本的 BIRD，身为新手我应该用那些版本吗
 
