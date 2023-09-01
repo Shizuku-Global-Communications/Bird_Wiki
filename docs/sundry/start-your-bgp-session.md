@@ -15,7 +15,7 @@
 
 **该设置将通用于本篇文章**
 
-**BIRD 的安装方法已经在** [**这里**](../attachments/bird-2.0.10-an-zhuang-fang-fa) **提出，请先自行安装。**
+**BIRD 的安装方法已经在** [**这里**](../attachments/bird-2.0.10-install) **提出，请先自行安装。**
 
 ## 配置虚拟网卡 <a href="#pei-zhi-xu-ni-wang-ka" id="pei-zhi-xu-ni-wang-ka"></a>
 

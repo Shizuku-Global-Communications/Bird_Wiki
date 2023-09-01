@@ -256,7 +256,7 @@ protocol bgp confed_Route1 {
 注意：当数据包到下一跳时，接下来怎么走是下一跳的事，并不会100%按照你接收的 BGP 路由那样走
 比如你收到了1.0.0.0/24 `AS Path: 114514 6939 12345`，而下一跳走默认路由(假设默认路由上游是`174`)，那么实际上这个包走的是`174`而不是`6939`。
 
-在建立了 [OSPF连接](build-inet#ospf) 后，我们直接建立`iBGP Session`即可(此处为机器1和机器2的 Session，如有需要请自行添加，`BOGON_PREFIXES_V4/V6`定义请参阅[此处](attachments/ji-chu-guo-lv-ding-yi))
+在建立了 [OSPF连接](build-inet#ospf) 后，我们直接建立`iBGP Session`即可(此处为机器1和机器2的 Session，如有需要请自行添加，`BOGON_PREFIXES_V4/V6`定义请参阅[此处](../attachments/basic-filters))
 
 机器1:&#x20;
 

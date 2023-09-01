@@ -2,7 +2,7 @@
 
 ## BIRD是什么
 
-以下文段来自 [BIRD](https://bird.network.cz/) [官](https://bird.network.cz/)[网](https://bird.network.cz/)
+以下文段来自 [BIRD 官网](https://bird.network.cz/)
 
 > **BIRD**项目旨在开发一个功能齐全的动态 IP 路由守护程序，主要针对（但不限于）Linux、FreeBSD 和其他类 UNIX 系统，并在 [GNU 通用公共许可证](http://www.gnu.org/copyleft/copyleft.html) 下分发。
 >
@@ -17,7 +17,7 @@
 
 如上所写，BIRD 是一个在 *nix 和 FreeBSD 平台运行的大部分由 C 实现的路由程序，支持包括但不限于 BGP、RIP、OSPF、Babel 等协议。同类产品还有 OpenBGPD, FRRouting 等。但是目前使用比较广的是 BIRD，本 wiki 也是为了 BIRD 而写。
 
-在此Wiki发布时，BIRD 最新版本为 2.13.1，但本文还是会使用 BIRD 2.0.10 讲解。有些版本的源最新版可能是2.0.7，所以请前往 [这里](../attachments/bird-2.0.10-an-zhuang-fang-fa) 安装最新版本。
+在此Wiki发布时，BIRD 最新版本为 2.13.1，但本文还是会使用 BIRD 2.0.10 讲解。有些版本的源最新版可能是2.0.7，所以请前往 [这里](../attachments/bird-2.0.10-install) 安装最新版本。
 
 ## 我看到了其他版本的 BIRD，身为新手我应该用那些版本吗
 
