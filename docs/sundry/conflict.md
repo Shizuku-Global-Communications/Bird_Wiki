@@ -1,4 +1,4 @@
-# 争议项
+# 争议项，如果您想更正，请提交 PR
 
 ### iBGP Route Reflector
 

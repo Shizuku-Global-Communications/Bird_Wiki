@@ -15,7 +15,7 @@
 
 **该设置将通用于本篇文章**
 
-**BIRD 的安装方法已经在** [**这里**](attachments/bird-2.0.10-an-zhuang-fang-fa) **提出，请先自行安装。**
+**BIRD 的安装方法已经在** [**这里**](../attachments/bird-2.0.10-an-zhuang-fang-fa) **提出，请先自行安装。**
 
 ## 配置虚拟网卡 <a href="#pei-zhi-xu-ni-wang-ka" id="pei-zhi-xu-ni-wang-ka"></a>
 
@@ -37,7 +37,7 @@ ip addr add 2001:db8:beef::1/128 dev dummy0 # 向dummy网卡添加地址
 
 ## 撰写配置文件 <a href="#zhuan-xie-pei-zhi-wen-jian" id="zhuan-xie-pei-zhi-wen-jian"></a>
 
-bird 在 debian 的默认配置文件在`/etc/bird/bird.conf`
+BIRD 在 Debian 的默认配置文件在`/etc/bird/bird.conf`
 
 你可以复制一份以备之后详细阅读他的注释（有很多有用的示例），现在我们要做的就是清空它。
 
@@ -130,14 +130,14 @@ protocol bgp transit_as20473_v6 { # 建议给自己指定一个命名规则
 	ipv6 { # 指定要在该BGP邻居上跑的协议
 		import filter import_filter_v6; # 指定导入过滤器
 		export filter export_filter_v6; # 指定导出过滤器
-		export limit 10; # 限制导出前缀数量，根据需要调整，防止过滤器配糊导致session爆炸需要联系对方NOC手动重启（比如HE）
+		export limit 10; # 限制导出前缀数量，根据需要调整，防止过滤器因过滤器配置错误导致 session 被关闭，在这种情况下通常需要联系对方 NOC 手动重启（比如 Hurricane Electric, AS6939）
 	};
-	graceful restart; # 平滑重启，建议支持，防止重启bird的时候造成路由撤回导致服务中断
+	graceful restart; # 平滑重启，建议支持，防止重启 BIRD 的时候造成路由撤回导致服务中断
 	description "AS20473 IPv6 Transit"; # 注释，根据自己的需要添加
 };
 ```
 
-在 BGP 中，是可以在一个会话上传递多种协议的，也就是`Multiprotocol extensions for BGP`（也简称`MP-BGP`）（[RFC 4760](http://www.rfc-editor.org/info/rfc4760)）。但是，如果没有明确约定，一般都是每种协议起一个会话。
+在 BGP 中，是可以在一个会话上传递多种协议的，也就是 Multiprotocol extensions for BGP （简称 MP-BGP）（[RFC 4760](http://www.rfc-editor.org/info/rfc4760)）。但是，如果没有明确约定，一般都是每种协议起一个会话。
 
 对于 BGP Session 的命名，你大可以根据自己的喜好命名，但是建议还是自行指定一个命名规则，在之后对路由和会话的管理有帮助。
 例如
@@ -166,15 +166,15 @@ protocol bgp peer_as100000_v6 { # 建议给自己指定一个命名规则
 	ipv6 { # 指定要在该BGP邻居上跑的协议
 		import filter import_filter_v6; # 指定导入过滤器
 		export filter export_filter_v6; # 指定导出过滤器
-		import limit 10; # 限制导入前缀数量，根据需要调整，防止对方过滤器配糊导致网络爆炸
-		export limit 10; # 限制导出前缀数量，根据需要调整，防止过滤器配糊导致session爆炸需要联系对方NOC手动重启（比如HE）
+		import limit 10; # 限制导入前缀数量，根据需要调整，防止对方过滤器配糊导致自己的网络瘫痪
+		export limit 10; # 限制导出前缀数量，根据需要调整，防止过滤器因过滤器配置错误导致 session 被关闭，在这种情况下通常需要联系对方 NOC 手动重启（比如 Hurricane Electric, AS6939）
 	};
-	graceful restart; # 平滑重启，建议支持，防止重启bird的时候造成路由撤回导致服务中断
+	graceful restart; # 平滑重启，建议支持，防止重启 BIRD 的时候造成路由撤回导致服务中断
 	description "AS100000 IPv6 Peering"; # 注释，根据自己的需要添加
 };
 ```
 
-对于 Peering 的会话，我们往往需要更加留意对方是否会发送一些奇怪的路由(比如::/0默认路由)，这个时候，我们可以将这个会话配置改成这样
+对于 Peering 的会话，我们往往需要更加留意对方是否会发送一些奇怪的路由(比如`::/0`默认路由)，这个时候，我们可以将这个会话配置改成这样
 
 ```
 protocol bgp peer_as100000_v6 { # 建议给自己指定一个命名规则
@@ -186,16 +186,16 @@ protocol bgp peer_as100000_v6 { # 建议给自己指定一个命名规则
 		    accept; # 接收所有其他路由
 		};
 		export filter export_filter_v6; # 指定导出过滤器
-		import limit 10; # 限制导入前缀数量，根据需要调整，防止对方过滤器配糊导致网络爆炸
-		export limit 10; # 限制导出前缀数量，根据需要调整，防止过滤器配糊导致session爆炸需要联系对方NOC手动重启（比如HE）
+		import limit 10; # 限制导入前缀数量，根据需要调整，防止对方过滤器配糊导致自己的网络瘫痪
+		export limit 10; # 限制导出前缀数量，根据需要调整，防止过滤器因过滤器配置错误导致 session 被关闭，在这种情况下通常需要联系对方 NOC 手动重启（比如 Hurricane Electric, AS6939）
 	};
-	graceful restart; # 平滑重启，建议支持，防止重启bird的时候造成路由撤回导致服务中断
+	graceful restart; # 平滑重启，建议支持，防止重启 BIRD 的时候造成路由撤回导致服务中断
 	description "AS100000 IPv6 Peering"; # 注释，根据自己的需要添加
 };
 ```
 
 这里只是表示了可以直接在某个 session 中写明过滤，export 同理，你也可以这么做。
-当然，在之后的 BGP 学习中，你会发现只排除默认路由往往是不够的，你还需要通过 IRR/RPKI/Bogon 检测对路由进行过滤，关于这些类型的检测，我们之后再讲。
+当然，在之后的 BGP 学习中，你会发现只排除默认路由往往是不够的，你还需要通过 IRR/RPKI/Bogon 检测对路由进行过滤，关于这些类型的检测，我们之后再讲（附录部分）。
 
 ### 收尾 <a href="#shou-wei" id="shou-wei"></a>
 
@@ -205,27 +205,27 @@ protocol bgp peer_as100000_v6 { # 建议给自己指定一个命名规则
 
 ```
 log syslog all;
-router id 1.1.1.1; # 指定路由ID，通常而言需要全球单播ipv4作为routerid
-define MyASN=114514; # 定义常量MyASN，提升可扩展性
-define OWNIPv6s=[2001:db8:beef::/48];    #在这里写入你网络拥有的IP块，我建议使用Git+Include文件的方法
-protocol device { # 扫描设备IP，这么写即可
+router id 1.1.1.1; # 指定路由 ID，通常而言需要全球单播 ipv4 作为 routerid
+define MyASN=114514; # 定义常量 MyASN，提升可扩展性
+define OWNIPv6s=[2001:db8:beef::/48];    #在这里写入你网络拥有的 IP Block，我建议使用 Git+Include 文件的方法
+protocol device { # 扫描设备 IP，这么写即可
 };
 protocol kernel {
     ipv6 {
         export all; # 将所有路由都导入系统路由表
     };
 };
-protocol static ANNOUNCE_v6 { #宣告自己的IPv6地址块，你也可以把ANNOUNCE_v6改成你喜欢的名字
+protocol static ANNOUNCE_v6 { #宣告自己的 IPv6 地址块，你也可以把 ANNOUNCE_v6 改成你喜欢的名字
     ipv6;
-    route 2001:db8:beef::/48 reject; #在STATIC中添加路由
+    route 2001:db8:beef::/48 reject; #在 STATIC 中添加路由
 };
 
-protocol static { #在某些特殊情况下，BGP会话会收到下一跳的路由，需要自行手动定义下一跳
+protocol static { #在某些特殊情况下，BGP 会话会收到下一跳的路由，需要自行手动定义下一跳
     ipv6;
 };
 
 filter export_filter_v6 {
-    if net ~ OWNIPv6s then accept; # 如果前缀包括在OWNIPv6s内则放出
+    if net ~ OWNIPv6s then accept; # 如果前缀包括在 OWNIPv6s 内则放出
     reject; # 否则全部拒绝
 };
 
@@ -234,30 +234,30 @@ filter import_filter_v6 {
 };
 
 protocol bgp transit_as20473_v6 { # 建议给自己指定一个命名规则
-	local 2405::1 as MyASN; # 指定本端地址与ASN
-	neighbor 2405::2 as 20473;  # 指定对端地址与ASN
-	ipv6 { # 指定要在该BGP邻居上跑的协议
+	local 2405::1 as MyASN; # 指定本端地址与 ASN
+	neighbor 2405::2 as 20473;  # 指定对端地址与 ASN
+	ipv6 { # 指定要在该 BGP 邻居上跑的 channel，根据你自己的需求添加（比如加 ipv4）或减少
 		import filter import_filter_v6; # 指定导入过滤器
 		export filter export_filter_v6; # 指定导出过滤器
-		export limit 10; # 限制导出前缀数量，根据需要调整，防止过滤器配糊导致session爆炸需要联系对方NOC手动重启（比如HE）
+		export limit 10; # 限制导出前缀数量，根据需要调整，防止过滤器因过滤器配置错误导致 session 被关闭，在这种情况下通常需要联系对方 NOC 手动重启（比如 Hurricane Electric, AS6939）
 	};
-	graceful restart; # 平滑重启，建议支持，防止重启bird的时候造成路由撤回导致服务中断
+	graceful restart; # 平滑重启，建议支持，防止重启 BIRD 的时候造成路由撤回导致服务中断
 	description "AS20473 IPv6 Transit"; # 注释，根据自己的需要添加
 };
 
 protocol bgp peer_as100000_v6 { # 建议给自己指定一个命名规则
-	local 2405::1 as MyASN; # 指定本端地址与ASN
-	neighbor 2405::3 as 100000;  # 指定对端地址与ASN
-	ipv6 { # 指定要在该BGP邻居上跑的协议
+	local 2405::1 as MyASN; # 指定本端地址与 ASN
+	neighbor 2405::3 as 100000;  # 指定对端地址与 ASN
+	ipv6 { # 指定要在该 BGP 邻居上跑的 channel，根据你自己的需求添加（比如加 ipv4）或减少
 		import filter { # 对此会话单独定义导入过滤器
 		    if net ~ [::/0] then reject; # 如果为默认路由则拒绝
 		    accept; # 接收所有其他路由
 		};
 		export filter export_filter_v6; # 指定导出过滤器
-		import limit 10; # 限制导入前缀数量，根据需要调整，防止对方过滤器配糊导致网络爆炸
-		export limit 10; # 限制导出前缀数量，根据需要调整，防止过滤器配糊导致session爆炸需要联系对方NOC手动重启（比如HE）
+		import limit 10; # 限制导入前缀数量，根据需要调整，防止对方过滤器配糊导致自己的网络瘫痪
+		export limit 10; # 限制导出前缀数量，根据需要调整，防止过滤器因过滤器配置错误导致 session 被关闭，在这种情况下通常需要联系对方 NOC 手动重启（比如 Hurricane Electric, AS6939）
 	};
-	graceful restart; # 平滑重启，建议支持，防止重启bird的时候造成路由撤回导致服务中断
+	graceful restart; # 平滑重启，建议支持，防止重启 BIRD 的时候造成路由撤回导致服务中断
 	description "AS100000 IPv6 Peering"; # 注释，根据自己的需要添加
 };
 ```

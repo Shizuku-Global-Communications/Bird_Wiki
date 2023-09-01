@@ -1,6 +1,6 @@
 # 2. 过滤器进阶
 
-在过滤公网路由的时候，只过滤::/0默认路由往往是不够的，因为这么做无法阻止盗播和错误路由，所以我们需要对过滤器进行进一步的修改。
+在过滤公网路由的时候，只过滤`::/0`默认路由往往是不够的，因为这么做无法阻止盗播和错误路由，所以我们需要对过滤器进行进一步的修改。
 
 ## 公网路由应遵守的规则
 
@@ -25,7 +25,7 @@
 >
 > 3.1 Reject default routes 0.0.0.0/0 and ::/0.
 >
-> 3.2 Reject AS paths that use BGP AS_SET notation (i.e. {1} or {1 2}, etc). See draft-ietf-idr-deprecate-as-set-confed-set.
+> 3.2 Reject AS paths that use BGP AS_SET notation (i.e. {1} or {1 2}, etc). See [draft-ietf-idr-deprecate-as-set-confed-set](https://datatracker.ietf.org/doc/draft-ietf-idr-deprecate-as-set-confed-set/).
 >
 > 3.3 Reject prefix lengths less than minimum and greater than maximum. For IPv4 this is 8 and 24. For IPv6 this is 16 and 48.
 >
@@ -63,28 +63,29 @@
 >
 > 这是具有显式过滤的客户和对等方的路由过滤列表：
 >
-> 1.尝试查找该网络的AS-SET
+> 1.尝试查找该网络的 AS-SET
 >
-> 1.1 使用在PeeringDB中匹配该ASN所属IRR策略中的AS-SET如果它存在
+> 1.1 使用在 PeeringDB 中匹配该 ASN 所属 IRR 策略中的 AS-SET 如果它存在
 >
 > 1.2 在 IRR 中，查询此 ASN 的 aut-num。如果存在，请检查此 ASN 的 aut-num 以查看我们是否可以从他们的 IRR 策略中提取他们将通过查找到 AS6939、ANY 或 AS-ANY 的 export 或 mp-export 向 HE 宣布的内容的资产。 优先顺序如下：使用第一个匹配项，在“mp-export”之前检查“export”，在“export: to ANY”或“export: to AS-ANY”之前检查“export: to AS6939”。 如果存在，请使用查询来验证AS-SET。
 >
-> 1.3 检查由 HE 的 NOC 维护的各种内部列表，这些列表将 ASN 映射到我们发现或被告知它们的AS-SET。 如果存在，请使用通过查询来验证AS-SET。
+> 1.3 检查由 HE 的 NOC 维护的各种内部列表，这些列表将 ASN 映射到我们发现或被告知它们的AS-SET。 如果存在，请使用通过查询来验证 AS-SET。
 >
-> 1.4 如果前面的步骤没有找到AS-SET，则使用 ASN。
+> 1.4 如果前面的步骤没有找到 AS-SET，则使用 ASN。
 >
-> 1. 收集与此 ASN的所有 BGP 会话接收的路由。这个结果同时接受并进行过滤。
+> 1. 收集与此 ASN 的所有 BGP 会话接收的路由。这个结果同时接受并进行过滤。
+>
 > 2. 对于每条路由，执行以下拒绝测试：
 >
 > 3.1 拒绝默认路由 0.0.0.0/0 和 ::/0。
 >
-> 3.2 拒绝使用 BGP AS_SET 表示法的 AS 路径（即 {1} 或 {1 2} 等）。请参阅draft-ietf-idr-deprecate-as-set-confed-set。
+> 3.2 拒绝使用 BGP AS_SET 表示法的 AS 路径（即 {1} 或 {1 2} 等）。请参阅 [draft-ietf-idr-deprecate-as-set-confed-set](https://datatracker.ietf.org/doc/draft-ietf-idr-deprecate-as-set-confed-set/)。
 >
-> 3.3 拒绝前缀长度小于最小值和大于最大值。IPV4中为 8 和 24，IPV6为16 和 48。
+> 3.3 拒绝前缀长度小于最小值和大于最大值。IPV4 中为 8 和 24，IPV6 为 16 和 48。
 >
 > 3.4 拒绝 bogons（RFC1918、文档前缀等）。
 >
-> 3.5 拒绝 HE 连接到的所有来自IXP的前缀。
+> 3.5 拒绝 HE 连接到的所有来自 IXP 的前缀。
 >
 > 3.6 拒绝长度超过 50 跳的 AS 路径。过多的 BGP AS 路径预置是一个自我造成的漏洞。
 >
@@ -94,7 +95,7 @@
 >
 > 3.9 拒绝使用 AS 0 的 AS 路径。根据 RFC 7606，“BGP 广播者不得发起或传播 AS 编号为零的路由”。
 >
-> 3.10 拒绝在源ASN或IP前缀的RPKI中含有INVALID_ASN 或 INVALID_LENGTH状态的路由
+> 3.10 拒绝在源 ASN 或 IP 前缀的 RPKI 中含有 INVALID_ASN 或 INVALID_LENGTH 状态的路由
 >
 > 1. 对于每条路由，执行以下接受测试：
 >
@@ -106,7 +107,7 @@
 >
 > 4.4 如果此前缀与该对等网络的 IRR 策略允许的前缀完全匹配，则接受该前缀。
 >
-> 4.5 如果路径中的第一个 AS 与对等网络匹配，并且路径为两跳，并且源 AS 在对等 AS 的扩展AS-SET中，并且 RPKI 状态为 VALID 或存在与源 AS 的 RIR 句柄匹配和前缀，接受前缀。
+> 4.5 如果路径中的第一个 AS 与对等网络匹配，并且路径为两跳，并且源 AS 在对等 AS 的扩展 AS-SET 中，并且 RPKI 状态为 VALID 或存在与源 AS 的 RIR 句柄匹配和前缀，接受前缀。
 >
 > 1. 拒绝所有未明确接受的前缀
 
@@ -117,7 +118,7 @@
 
 总结而言，对于对等与下游，我们只应该接受路由长度大于最小值小于最大值，path 内不包含保留 ASN，不为保留前缀，且 IRR 匹配，RPKI 不为 INVALID 的路由。
 
-而对于上游，我们仅验证 RPKI 不为 INVALID，路由长度大于最小值小于最大值，path 内不包含保留  ASN，不为保留前缀即可，不必验证 IRR。
+而对于上游，我们仅验证 RPKI 不为 INVALID，路由长度大于最小值小于最大值，path 内不包含保留 ASN，不为保留前缀即可，不必验证 IRR。
 
 ### 专有名词概念解释 <a href="#gai-nian" id="gai-nian"></a>
 
@@ -125,7 +126,7 @@
 
 #### IRR <a href="#irr" id="irr"></a>
 
-IRR（Internet Routing Registry）是存储互联网路由对象的数据库，里面记录了某个前缀该被路由到哪个 ASN。IRR 实际上由很多个数据库组成，具体列表请看[这里](https://www.irr.net/docs/list.html)。五大 RIR（ARIN，RIPE，AFRINIC，APNIC，LACNIC），比较老的 T1（LEVEL3，NTTCOM）都有自己的 IRR 数据库，同时还有一个商业数据库 RADb 和一个非营利数据库 ALTDB。这9个数据库是目前比较通用的数据库。
+IRR（Internet Routing Registry）是存储互联网路由对象的数据库，里面记录了某个前缀该被路由到哪个 ASN。IRR 实际上由很多个数据库组成，具体列表请看[这里](https://www.irr.net/docs/list.html)。五大 RIR（ARIN，RIPE，AFRINIC，APNIC，LACNIC），比较老的 T1（例如LEVEL3，NTTCOM）都有自己的 IRR 数据库，同时还有一个商业数据库 RADb 和一个非营利数据库 ALTDB。这9个数据库是目前比较通用的数据库。
 
 #### RPKI <a href="#rpki" id="rpki"></a>
 

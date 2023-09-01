@@ -52,8 +52,12 @@ jobs:
 
       # 移动images
       - name: Move images folder
-        run: mv docs/images/ build/
-      
+        run: mv docs/images/ build/assets/
+
+      # 处理自动跳转的HTML
+      - name: Create Redirect
+        run: mv index.html build/
+
       # 查看 workflow 的文档来获取更多信息
       # @see https://github.com/crazy-max/ghaction-github-pages
       - name: Deploy to GitHub Pages

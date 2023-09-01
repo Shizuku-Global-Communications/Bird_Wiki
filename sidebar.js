@@ -93,6 +93,11 @@ module.exports = {
                 },
                 {
                     type: 'doc',
+                    id: 'sundry/conflict',
+                    label: '争议项（不正常但能用的组网方案），乖宝宝不要学~',
+                },
+                {
+                    type: 'doc',
                     id: 'attachments/special_thanks',
                     label: '鸣谢',
                 },

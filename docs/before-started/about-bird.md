@@ -30,7 +30,7 @@ BIRD v1 是最早的 BIRD，由两个Daemon分别支持IPv4与IPv6的路由，�
 
 ### v2 <a href="#v2" id="v2"></a>
 
-BIRD v2是目前 BIRD 的主线版本。与 v1 相比，v2 仅使用一个 Daemon 来运行 v4 与 v6 的路由。最新版本是`2.0.10`。
+BIRD v2是目前 BIRD 的主线版本。与 v1 相比，v2 仅使用一个 Daemon 来运行 v4 与 v6 的路由。最新版本是`2.13.1`。
 本 Wiki 将主要讲述该版本的使用。
 
 ### v3 <a href="#v3" id="v3"></a>

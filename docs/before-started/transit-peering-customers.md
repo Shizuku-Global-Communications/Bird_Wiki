@@ -2,7 +2,7 @@
 
 BGP Session，顾名思义，就是一个 BGP 的会话，连接双方都必须要配置正确的参数，否则会报错，无法连接。
 
-在下文中，你会看到不少类似于类似 Transit、Peering、Customer(Downstream，下文统一使用Downstream) 的描述，他们是你与对方的关系的描述。
+在下文中，你会看到不少类似于类似 Transit、Peering、Customer(Downstream，下文统一使用 Downstream) 的描述，他们是你与对方的关系的描述。
 
 Transit：你的上游，将你的路由通过它走向世界的每一个角落。
 Peering：你的对等连接，你需要把你和你的下游（Downstream）发送给对方，让双方的网络不经过Transit即可到达对方。
