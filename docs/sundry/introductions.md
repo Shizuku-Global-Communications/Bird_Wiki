@@ -14,3 +14,5 @@ description: 在你开始进入 BGP 的世界前，你需要注意
 5. 基础的网络知识和 Linux 知识
 
 如果你此时还没有 ASN，请先去寻找一个LIR并且在获取了 ASN 和 IP 地址块后继续
+
+或者你也可以尝试[DN42](https://dn42.dev/Home)，DN42 是一个大型、去中心化的 VPN 网络，旨在模拟一个互联网，你可以在上面申请ASN和IP，并练习BGP技能。即使你不小心搞砸了，也没有人会指责你。具体参见 [LanTian的教程](https://lantian.pub/article/modify-website/dn42-experimental-network-2020.lantian)
